@@ -1,4 +1,4 @@
-package com
+package com.library.feign.librarysearch
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
