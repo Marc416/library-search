@@ -1,13 +1,11 @@
-package com.library.feign
+package com.library.feign.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.library.ApiException
 import com.library.ErrorType
-import com.library.feign.config.NaverErrorDecoder
 import com.library.feign.response.NaverErrorResponse
 import feign.Request
 import feign.Response
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -17,7 +15,6 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.springframework.http.HttpStatus
 import java.io.ByteArrayInputStream
-import java.io.InputStream
 
 class NaverErrorDecoderTest {
     val objectMapper: ObjectMapper = mock()
