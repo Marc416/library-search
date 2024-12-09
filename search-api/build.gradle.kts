@@ -5,12 +5,7 @@ tasks.named<BootJar>("bootJar") {
 }
 
 dependencies {
-    api("org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0")
-}
-
-subprojects{
-    dependencies{
-        implementation(project(":common"))
-        implementation(project(":external:naver-client"))
-    }
+    implementation(project(":common"))
+    implementation(project(":external:naver-client"))
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 }
