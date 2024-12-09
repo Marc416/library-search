@@ -3,7 +3,7 @@ package com.library.controller
 import com.library.controller.request.SearchRequest
 import com.library.controller.response.PageResult
 import com.library.controller.response.SearchResponse
-import com.library.service.BookQueryService
+import com.library.service.BookApplicationService
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,13 +24,13 @@ class BookControllerItTest {
     private lateinit var mockMvc: MockMvc
 
     @MockitoBean
-    private lateinit var bookQueryService: BookQueryService
+    private lateinit var bookApplicationService: BookApplicationService
 
     @Test
     fun `정상인자로 요청시 성공한다`() {
         // Arrange
         val request = SearchRequest("HTTP", 1, 10)
-        `when`(bookQueryService.search(query = anyString(), page = anyInt(), size = anyInt())).thenReturn(
+        `when`(bookApplicationService.search(query = anyString(), page = anyInt(), size = anyInt())).thenReturn(
             PageResult(
                 page = 1,
                 size = 10,

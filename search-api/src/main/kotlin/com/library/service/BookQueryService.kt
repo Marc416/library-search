@@ -6,7 +6,7 @@ import com.library.repository.BookRepository
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 
-val logger = KotlinLogging.logger {}
+private val logger = KotlinLogging.logger {}
 
 @Service
 class BookQueryService(
