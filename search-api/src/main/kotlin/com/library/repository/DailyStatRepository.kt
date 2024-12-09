@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.Query
 import java.time.LocalDateTime
 
 interface DailyStatRepository : JpaRepository<DailyStat, Long> {
-    fun countByQueryAndEventDateTimeBetween(query: String?, start: LocalDateTime?, end: LocalDateTime?): Long
+    fun countByQueryAndEventDateTimeBetween(query: String, start: LocalDateTime, end: LocalDateTime): Long
 
     @Query(
         "SELECT new com.library.controller.response.StatResponse(ds.query, count(ds.query))" +
             "FROM DailyStat ds " +
             "GROUP BY ds.query ORDER BY count(ds.query) DESC"
     )
-    fun findTopQuery(pageable: Pageable?): List<StatResponse?>?
+    fun findTopQuery(pageable: Pageable): List<StatResponse>
 }
