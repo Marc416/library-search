@@ -1,24 +1,35 @@
 package com.library.service
 
+import com.library.controller.response.PageResult
+import com.library.controller.response.SearchResponse
+import com.library.service.event.SearchEvent
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
+import org.mockito.kotlin.any
 import org.mockito.kotlin.argThat
 import org.mockito.kotlin.eq
+import org.mockito.kotlin.isA
+import org.springframework.context.ApplicationEventPublisher
 import java.time.LocalDate
 
 class BookApplicationServiceTest {
 
     lateinit var bookApplicationService: BookApplicationService
     val bookQueryService = mock(BookQueryService::class.java)
-    val dailyStatCommandService = mock(DailyStatCommandService::class.java)
     val dailyStatQueryService = mock(DailyStatQueryService::class.java)
+    val eventPublisher = mock(ApplicationEventPublisher::class.java)
 
     @BeforeEach
     fun init() {
         this.bookApplicationService =
-            BookApplicationService(bookQueryService, dailyStatCommandService, dailyStatQueryService)
+            BookApplicationService(
+                bookQueryService = bookQueryService,
+                dailyStatQueryService = dailyStatQueryService,
+                eventPublisher = eventPublisher
+            )
     }
 
     @Test
@@ -27,15 +38,21 @@ class BookApplicationServiceTest {
         val givenQuery = "HTTP"
         val givenPage = 1
         val givenSize = 10
+        `when`(bookQueryService.search(query = eq(givenQuery), page = eq(givenPage), size = eq(givenSize))).thenReturn(
+            PageResult(
+                page = 1,
+                size = 10,
+                totalElements = 10,
+                contents = listOf(mock(SearchResponse::class.java))
+            )
+        )
 
         // Action
         bookApplicationService.search(givenQuery, givenPage, givenSize)
 
         // Assert
         verify(bookQueryService).search(query = eq(givenQuery), page = eq(givenPage), size = eq(givenSize))
-        verify(dailyStatCommandService).save(argThat { it ->
-            it.query == givenQuery
-        })
+        verify(eventPublisher).publishEvent(isA<SearchEvent>())
     }
 
     @Test
