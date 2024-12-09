@@ -2,10 +2,10 @@ package com.library.service
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.kotlin.argThat
+import org.mockito.kotlin.eq
 import java.time.LocalDate
 
 class BookApplicationServiceTest {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam
 interface KakaoClient {
     @GetMapping("/v3/search/book")
     fun search(
-        @RequestParam("query") query: String?,
+        @RequestParam("query") query: String,
         @RequestParam("page") page: Int,
         @RequestParam("size") size: Int
     ): KakaoBookResponse

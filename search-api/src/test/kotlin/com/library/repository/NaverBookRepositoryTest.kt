@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
+import java.time.LocalDate
 
 class NaverBookRepositoryTest {
 
@@ -71,7 +72,7 @@ class NaverBookRepositoryTest {
         assertThat(result.size).isEqualTo(givenSize)
         assertThat(result.totalElements).isEqualTo(totalElementSize)
         assertThat(result.contents.size).isEqualTo(totalElementSize)
-        assertThat(result.contents[0].pubDate.toString()).isEqualTo("2024-01-01")
+        assertThat(result.contents[0].pubDate).isEqualTo(LocalDate.of(2024, 1, 1))
     }
 }
 

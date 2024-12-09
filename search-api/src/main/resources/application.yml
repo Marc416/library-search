@@ -4,6 +4,7 @@ spring:
   config:
     import:
       - application-naver-client.yml
+      - application-kakao-client.yml
   h2:
     console:
       enabled: true

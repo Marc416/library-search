@@ -15,15 +15,14 @@ class KakaoBookRepository(
 
     override fun search(query: String, page: Int, size: Int): PageResult<SearchResponse> {
         val response: KakaoBookResponse = kakaoClient.search(query, page, size)
-        val responses: List<SearchResponse> = response.documents.stream()
-            .map { document: Document -> this.createResponse(document) }.toList()
+        val responses: List<SearchResponse> = response.documents.map { document: Document -> this.createResponse(document) }
         return PageResult(page, size, response.meta.totalCount, responses)
     }
 
     private fun createResponse(document: Document): SearchResponse {
         return SearchResponse(
             title = document.title,
-            author = document.authors[0],
+            author = document.authors.firstOrNull() ?: "",
             publisher = document.publisher,
             pubDate = DateUtils.parseOffsetDateTime(document.datetime).toLocalDate(),
             isbn = document.isbn
