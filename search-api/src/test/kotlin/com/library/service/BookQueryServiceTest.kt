@@ -3,15 +3,19 @@ package com.library.service
 import com.library.repository.BookRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
 
 class BookQueryServiceTest {
     private val naverBookRepository = mock(BookRepository::class.java)
+    private val kakaoBookRepository = mock(BookRepository::class.java)
     private lateinit var bookQueryService: BookQueryService
 
     @BeforeEach
     fun init() {
-        this.bookQueryService = BookQueryService(naverBookRepository)
+        this.bookQueryService = BookQueryService(naverBookRepository, kakaoBookRepository)
     }
 
     @Test
@@ -26,5 +30,6 @@ class BookQueryServiceTest {
 
         // Assert
         verify(naverBookRepository, times(1)).search(eq(givenQuery), eq(givenPage), eq(givenSize))
+        verify(kakaoBookRepository, times(0))
     }
 }

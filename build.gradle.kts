@@ -7,6 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6" apply false
 }
 
+
 // 하위 모듈에서 사용
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")

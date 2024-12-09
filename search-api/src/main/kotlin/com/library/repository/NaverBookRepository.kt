@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 class NaverBookRepository(
     private val naverClient: NaverClient
 ) : BookRepository {
-    override fun search(query: String?, page: Int, size: Int): PageResult<SearchResponse> {
+    override fun search(query: String, page: Int, size: Int): PageResult<SearchResponse> {
         val response = naverClient.search(query = query, start = page, display = size)
         val responses = response.items.map { createResponse(it) }
         return PageResult(

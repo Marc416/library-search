@@ -1,11 +1,12 @@
 package com.library
 
+import com.library.feign.KakaoClient
 import com.library.feign.NaverClient
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.openfeign.EnableFeignClients
 
-@EnableFeignClients(clients = [NaverClient::class])
+@EnableFeignClients(clients = [NaverClient::class, KakaoClient::class])
 @SpringBootApplication
 class Application
 
