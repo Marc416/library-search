@@ -1,6 +1,7 @@
 package com.library.controller.request
 
 import jakarta.validation.constraints.*
+import org.springframework.web.bind.annotation.RequestParam
 
 data class SearchRequest(
     @field:NotBlank(message = "입력은 비어있을 수 없습니다.")
