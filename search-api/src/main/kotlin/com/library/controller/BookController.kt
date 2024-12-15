@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
 
-val logger = KotlinLogging.logger {}
+private val logger = KotlinLogging.logger {}
 
 @RestController
 @RequestMapping("/v1/books")
